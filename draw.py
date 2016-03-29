@@ -4,13 +4,35 @@ import math
 
 
 def add_box( points, x, y, z, width, height, depth ):
-    return 0
+    add_edge(points, x, y, z, x, y, z)
+    add_edge(points, x, y+height, z, x, y+height, z)
+
+    add_edge(points, x, y, z+depth, x, y, z+depth)
+    add_edge(points, x, y+height, z+depth, x, y+height, z+depth)
+
+    add_edge(points, x+width, y, z, x+width, y, z)
+    add_edge(points, x+width, y+height, z, x+height, y+height, z)
+
+    add_edge(points, x+width, y, z+depth, x+height, y, z+depth)
+    add_edge(points, x+width, y+height, z+depth, x+height, y+height, z+depth)
 
 def add_sphere( points, cx, cy, cz, r, step ):
-    return 0
+    draw = []
+    generate_sphere(draw,cx,cy,cz,r,step)
+    for d in draw:
+        add_edge(points,d[0],d[1],d[2],d[0],d[1],d[2])
 
 def generate_sphere( points, cx, cy, cz, r, step ):
-    return 0
+    p = 0.0
+    while p<1:
+        t = 0
+        while t<1:
+            x = r*math.cos(2*math.pi*t) + cx
+            y = r*math.sin(2*math.pi*t)*math.cos(math.pi*p) + cy
+            z = r*math.sin(2*math.pi*t)*math.sin(math.pi*p) + cy
+            add_point(points,x,y,z)
+            t+=step
+        p+=step
 
 def add_torus( points, cx, cy, cz, r0, r1, step ):
     return 0
