@@ -11,6 +11,8 @@ transform = new_matrix()
 
 if len(sys.argv) == 2:
     f = open(sys.argv[1])
+else:
+    f = open('script_3d')
 
 parse_file( f, edges, transform, screen, color )
 f.close()
